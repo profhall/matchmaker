@@ -28,7 +28,7 @@
 
 .card_container{
   display: flex;
-  height: 95%;
+  height: 80%;
   background-color: #222222;
   flex-direction: row;
   flex-wrap: wrap;
@@ -39,10 +39,12 @@
   ;
 }
 header{
-  height: 12vh;
+  height: 10%;
   background-color: chartreuse;
-
-
+  display :flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: space-between;
 }
 
 .card{
@@ -52,6 +54,42 @@ header{
   border: 1px black solid;
   width: 20%;
   height:15%;
+}
+
+.pairing_list{
+  height: 7%;
+  background-color: chartreuse;
+}
+
+/**/
+.scrollmenu{
+  width: 99%;
+  align-content: space-between ;
+}
+
+.menu-item {
+  padding: 0 40px;
+  /* margin: 5px 10px; */
+  min-width: 100px;
+  user-select: none;
+  cursor: pointer;
+  background-color: tomato;
+  min-height: 100px;
+  display:flex;
+  align-items: center;
+  justify-content: center;
+}
+.menu-item-wrapper.active {
+  border: 3px blue solid;
+
+}
+.menu-item-wrapper.active > .menu-item {
+  background-color: white !important;
+}
+
+.scroll-menu-arrow {
+  padding: 20px;
+  cursor: pointer;
 }
 
 @keyframes App-logo-spin {
