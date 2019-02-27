@@ -13,8 +13,8 @@ const PairingList = (props) => {
                 data={props.data}
                 // arrowLeft={ArrowLeft}
                 // arrowRight={ArrowRight}
-                selected={props.selected}
-                onSelect={props.onSelect}
+                // selected={props.selected}
+                // onSelect={props.onSelect}
             />
         </div>
     );

@@ -17,7 +17,7 @@ const MenuItem = ({ text, selected }) => {
 
 // All items component
 // Important! add unique key
-export const Menu = (list) => list.map((flavor,i) => {
+const Menu = (list) => list.map((flavor,i) => {
 
 
     return (

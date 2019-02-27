@@ -7,6 +7,7 @@ import PairingList from "./components/PairingList";
 import Menu from "./components/Menu";
 import list from "./data/playData";
 import Flavors from "./data/veg_flavorbible";
+import MatchCards from "./components/MatchCards";
 
 // list of items
 
@@ -73,7 +74,7 @@ class App extends Component {
 
   render() {
 
-      const { selected } = this.state;
+       const { selected } = this.state;
       // Create menu from items
       const menu = Menu(simpleList, selected);
 
@@ -81,33 +82,37 @@ class App extends Component {
       <div className="App">
           <header>
               <PairingList
-                  data={menu} onSelect={this.onSelect} selected={this.state.selected}/>
+                  data={menu}
+                  // onSelect={this.onSelect}
+                  // selected={this.state.selected}
+              />
           </header>
         <main className="card_container">
-            <div className="card"></div>
-            <div className="card"></div>
-            <div className="card"></div>
-            <div className="card"></div>
-            <div className="card"></div>
-            <div className="card"></div>
-            <div className="card"></div>
-            <div className="card"></div>
-            <div className="card"></div>
-            <div className="card"></div>
-            <div className="card"></div>
-            <div className="card"></div>
-            <div className="card"></div>
-            <div className="card"></div>
-            <div className="card"></div>
-            <div className="card"></div>
-            <div className="card"></div>
-            <div className="card"></div>
-            <div className="card"></div>
-            <div className="card"></div>
-            <div className="card"></div>
-            <div className="card"></div>
-            <div className="card"></div>
-            <div className="card"></div>
+            <MatchCards pairs={this.state.pairs}/>
+            {/*<div className="card"></div>*/}
+            {/*<div className="card"></div>*/}
+            {/*<div className="card"></div>*/}
+            {/*<div className="card"></div>*/}
+            {/*<div className="card"></div>*/}
+            {/*<div className="card"></div>*/}
+            {/*<div className="card"></div>*/}
+            {/*<div className="card"></div>*/}
+            {/*<div className="card"></div>*/}
+            {/*<div className="card"></div>*/}
+            {/*<div className="card"></div>*/}
+            {/*<div className="card"></div>*/}
+            {/*<div className="card"></div>*/}
+            {/*<div className="card"></div>*/}
+            {/*<div className="card"></div>*/}
+            {/*<div className="card"></div>*/}
+            {/*<div className="card"></div>*/}
+            {/*<div className="card"></div>*/}
+            {/*<div className="card"></div>*/}
+            {/*<div className="card"></div>*/}
+            {/*<div className="card"></div>*/}
+            {/*<div className="card"></div>*/}
+            {/*<div className="card"></div>*/}
+            {/*<div className="card"></div>*/}
         </main>
           <footer className='pairing_list'>
               <p>matches</p>

@@ -73,19 +73,21 @@ header{
   min-width: 100px;
   user-select: none;
   cursor: pointer;
-  background-color: tomato;
-  min-height: 100px;
+  /*background-color: tomato;*/
+  border-left: #222222 solid 2px;
+  height: 50%;
   display:flex;
   align-items: center;
   justify-content: center;
 }
-.menu-item-wrapper.active {
-  border: 3px blue solid;
+/*.menu-item-wrapper.active {*/
+  /*border: 3px blue solid;*/
 
-}
-.menu-item-wrapper.active > .menu-item {
-  background-color: white !important;
-}
+/*}*/
+
+/*.menu-item-wrapper.active > .menu-item {*/
+  /*background-color: white !important;*/
+/*}*/
 
 .scroll-menu-arrow {
   padding: 20px;
