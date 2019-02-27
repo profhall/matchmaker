@@ -7,7 +7,7 @@ import PairingList from "./components/PairingList";
 import Menu from "./components/Menu";
 import list from "./data/playData";
 import Flavors from "./data/veg_flavorbible";
-import MatchCards from "./components/MatchCards";
+import MatchCards from "./components/MatchCards/MatchCards";
 
 // list of items
 
@@ -37,6 +37,7 @@ const simpleList = FlavorsList.map((flavor,i) => {
 
 class App extends Component {
     constructor(props) {
+        let already_used_pairing_ing =[]
         super(props);
         //this line makes sure that 'this.Onclick' is always gonna be bound and trigger 'onClick' method
         this.onSelect = this.onSelect.bind(this);
@@ -49,19 +50,33 @@ class App extends Component {
 
         this.state.pairs = FlavorsList.map( (flav)=> {
             // console.log(flav.Ingredients != null)
-            let flavor_pair =
-                {
-                    'flavor': flav.name,
-                    'a_pair': flav.Ingredients != null ?
-                        flav.Ingredients[Math.floor(Math.random() * Math.floor(flav.Ingredients.length))]
-                    :
-                        null
-                };
-            return (
-                flavor_pair
-            )
+                let flavor_pair ={}
+                if (flav.Ingredients != null){
+                    let randNum = Math.floor(Math.random() * Math.floor(flav.Ingredients.length-1));
+                    flavor_pair =
+                        {
+                            'flavor': flav.name,
+                            'a_pair': already_used_pairing_ing.includes(flav.Ingredients[randNum]) ? flav.Ingredients[randNum+1] : flav.Ingredients[randNum]
+
+
+
+                        };
+
+                    already_used_pairing_ing.push(flavor_pair.a_pair)
+                    return (
+                        flavor_pair
+                    )
+                }
+                else{
+                    return "empty"
+                }
         }
         );
+
+        for( var i = this.state.pairs.length-1; i--;){
+            if ( this.state.pairs[i] === 'empty') this.state.pairs.splice(i, 1);
+        }
+
         console.log(this.state.pairs)
     }
 
@@ -89,30 +104,6 @@ class App extends Component {
           </header>
         <main className="card_container">
             <MatchCards pairs={this.state.pairs}/>
-            {/*<div className="card"></div>*/}
-            {/*<div className="card"></div>*/}
-            {/*<div className="card"></div>*/}
-            {/*<div className="card"></div>*/}
-            {/*<div className="card"></div>*/}
-            {/*<div className="card"></div>*/}
-            {/*<div className="card"></div>*/}
-            {/*<div className="card"></div>*/}
-            {/*<div className="card"></div>*/}
-            {/*<div className="card"></div>*/}
-            {/*<div className="card"></div>*/}
-            {/*<div className="card"></div>*/}
-            {/*<div className="card"></div>*/}
-            {/*<div className="card"></div>*/}
-            {/*<div className="card"></div>*/}
-            {/*<div className="card"></div>*/}
-            {/*<div className="card"></div>*/}
-            {/*<div className="card"></div>*/}
-            {/*<div className="card"></div>*/}
-            {/*<div className="card"></div>*/}
-            {/*<div className="card"></div>*/}
-            {/*<div className="card"></div>*/}
-            {/*<div className="card"></div>*/}
-            {/*<div className="card"></div>*/}
         </main>
           <footer className='pairing_list'>
               <p>matches</p>

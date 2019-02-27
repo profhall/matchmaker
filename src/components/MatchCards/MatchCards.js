@@ -1,5 +1,5 @@
 import React from 'react';
-
+import './MatchCards.css';
 
 
 let randNum = 0
@@ -35,13 +35,21 @@ const MatchCard = (props) =>  {
     }
 
     console.log(chosenCards)
-    const cards = chosenCards.map((card,i) => <div className={'card '} title={i}>{card.flavor}</div>)
-    cards.push( chosenCards.map((card,i) => <div className={'card '} title={i}>{card.a_pair}</div>))
+    const cards = chosenCards.map((card,i) =>
+        <div onClick={()=>console.log(card.flavor)} key={i+100} className={'card c'+i} title={i}>
+            <span className={'cardText'} >{card.flavor}</span>
+        </div>
+    )
+    cards.push( chosenCards.map((card,i) =>
+        <div onClick={()=>console.log(card.a_pair)} key={i+200}  className={'card c' +i} title={i}>
+            <span className={'cardText'} >{card.a_pair}</span>
+        </div>)
+    )
     const shuf_cards=shuffle(cards)
     return (
         shuf_cards
     )
-}
+};
 
 
 const MatchCards = (props) =>  {
