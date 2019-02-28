@@ -41,32 +41,7 @@ class App extends Component {
         // console.log(this.state.pairs)
     }
 
-    static getDerivedStateFromProps(props, state) {
-        if (state) {
-            if( state.game.pairing_card_name ){
 
-                console.log("Pairing Card " + state.game.pairing_card_name)
-                let valu = state.game.pairing_card_name;
-                // state.game.pairing_card_name = null;
-
-                return {
-                    pairing_card_name: valu
-                }
-            }
-            if( state.game.paired_card_name ){
-
-                console.log("Paired Card " + state.game.paired_card_name )
-                let valu = state.game.paired_card_name;
-                //state.game.paired_card_name = null;
-
-            return {
-                paired_card_name: valu
-            }}
-
-        }
-        // when null is returned no update is made to the state
-        return null;
-    }
 
     async componentDidMount() {
         // const res = await axios.get('/artists.json');
@@ -189,17 +164,7 @@ class App extends Component {
             }
         };
 
-    async shouldComponentUpdate(nextProps, nextState, nextContext) {
-        if (this.state.game.pairing_card !== null && (this.state.game.pairing_card === nextState.game.paired_card)) {
 
-            console.log("should update & pair!");
-            console.log(this.state.game);
-
-            return true
-        }
-
-        return false
-    }
 
 
     //
