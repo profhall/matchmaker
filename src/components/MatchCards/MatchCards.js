@@ -26,17 +26,17 @@ var shuffle = function (array) {
 };
 
 const MatchCard = (props) =>  {
-    let chosenCards=props.chosenCards
+    let chosenCards=props.chosenCards;
 
     console.log(chosenCards)
     const cards = chosenCards.map((card,i) =>
         <div onClick={props.onClick} key={i+100} className={'card c'+i}>
-            <span className={'cardText'} >{card.flavor}</span>
+            <span className={'cardText'} >{card.pairer}</span>
         </div>
     )
     cards.push( chosenCards.map((card,i) =>
         <div onClick={props.onClick} key={i+200}  className={'card c' +i} >
-            <span className={'cardText'} >{card.a_pair}</span>
+            <span className={'cardText'} >{card.thePair}</span>
         </div>)
     )
     const shuf_cards=shuffle(cards)

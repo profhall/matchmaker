@@ -8,126 +8,245 @@ import Menu from "./components/Menu";
 import list from "./data/playData";
 import Flavors from "./data/veg_flavorbible";
 import MatchCards from "./components/MatchCards/MatchCards";
+import removeJunk from "./workers/removeJunk";
 
 // list of items
 
-const FlavorsList = Object.values(Flavors);
-
-console.log(FlavorsList);
-
-const removeJunk = (string) => {
-    let fname = string
-    console.log(fname)
-
-    if (fname.includes('(')) {
-        fname = fname.slice(0, fname.indexOf("(") - 1)
-    }
-
-    if (fname.includes('and/or')) {
-        fname = fname.slice(0, fname.indexOf("and/or") - 1)
-    }
-
-    if (fname.includes('or')) {
-        fname = fname.slice(0, fname.indexOf("or") - 1)
-    }
-
-    if (fname.includes(',') && fname.split(",").length === 2 ) {
-        console.log(fname.split(","))
-
-        fname = fname.split(",")[1] + " " +fname.split(",")[0]
-        console.log(fname)
-    }
-    return(fname)
-};
-
-const simpleList = FlavorsList.map((flavor,i) => {
-    const letter = flavor;
-    var name = removeJunk(flavor.name);
-    return(name)
-});
-
-
-
 class App extends Component {
     constructor(props) {
-        let already_used_pairing_ing =[]
         super(props);
         //this line makes sure that 'this.Onclick' is always gonna be bound and trigger 'onClick' method
         this.onSelect = this.onSelect.bind(this);
 
         this.state = {
             selected: '',
-            ingredients_list: simpleList,
+            ingredients_list: [],
             pairs: [],
+            timer: 0,
             chosenCards: [],
-            pairing_card: null,
-            paired_card: null
+            cardNodes:[],
+            menu:null,
+            game:
+                {
+                    pairing_card: null,
+                    paired_card: null,
+                    pairing_card_pulled: false,
+                    pairing_card_name:null,
+                    paired_card_name:null,
+                    correctMatches: 0,
+                    wrongMatches:0
+                }
+
         };
+        // console.log(this.state.pairs)
+    }
 
+    static getDerivedStateFromProps(props, state) {
+        if (state) {
+            if( state.game.pairing_card_name ){
 
-        this.state.pairs = FlavorsList.map( (flav)=> {
-            // console.log(flav.Ingredients != null)
-                let flavor_pair ={}
-                if (flav.Ingredients != null){
-                    let randNum = Math.floor(Math.random() * Math.floor(flav.Ingredients.length-1));
-                    flavor_pair =
-                        {
-                            'flavor': removeJunk(flav.name),
-                            'a_pair': already_used_pairing_ing.includes(flav.Ingredients[randNum]) ? flav.Ingredients[randNum+1] : flav.Ingredients[randNum]
+                console.log("Pairing Card " + state.game.pairing_card_name)
+                let valu = state.game.pairing_card_name;
+                // state.game.pairing_card_name = null;
 
-
-
-                        };
-
-                    already_used_pairing_ing.push(flavor_pair.a_pair)
-                    return (
-                        flavor_pair
-                    )
+                return {
+                    pairing_card_name: valu
                 }
-                else{
-                    return "empty"
-                }
+            }
+            if( state.game.paired_card_name ){
+
+                console.log("Paired Card " + state.game.paired_card_name )
+                let valu = state.game.paired_card_name;
+                //state.game.paired_card_name = null;
+
+            return {
+                paired_card_name: valu
+            }}
+
         }
+        // when null is returned no update is made to the state
+        return null;
+    }
+
+    async componentDidMount() {
+        // const res = await axios.get('/artists.json');
+        const FlavorsList = Object.values(Flavors);
+        const chosenPairs = [];
+        const already_used_pairing_ing =[];
+        let randNum =0;
+        const simpleList = FlavorsList.map((flavor,i) => {
+            const letter = flavor;
+            var name = removeJunk(flavor.name);
+            return(name)
+        });
+
+        // const { selected } = this.state;
+        // Create menu from items
+        // const menu = Menu(simpleList, selected);
+        const menu = Menu(simpleList);
+        const ingredientPairsList = <PairingList data={menu}/>
+
+        const pairs = FlavorsList.map( (flav)=> {
+            // console.log(flav.Ingredients != null)
+            let flavor_pair ={}
+            if (flav.Ingredients != null){
+                let randNum = Math.floor(Math.random() * Math.floor(flav.Ingredients.length-1));
+                flavor_pair =
+                    {
+                        'pairer': removeJunk(flav.name),
+                        'thePair': already_used_pairing_ing.includes(flav.Ingredients[randNum]) ? flav.Ingredients[randNum+1] : flav.Ingredients[randNum]
+                    };
+
+                already_used_pairing_ing.push(flavor_pair.thePair);
+                return (
+                    flavor_pair
+                )
+            }
+            else{
+                return "empty"
+            }
+        });
+
+        //remove all the empty values
+        for( var i = pairs.length-1; i--;){
+            // console.log(this.state.pairs[i])
+            if( pairs[i] === 'empty') pairs.splice(i, 1);//removes the element from the array
+        }
+
+        for(let i = 0 ; i<12 ; i++){
+            randNum = Math.floor(Math.random() * Math.floor(pairs.length))
+            chosenPairs.push(pairs[randNum])
+        }
+        const divCards = <MatchCards chosenCards={chosenPairs} onClick={this.onSelect} pairs={pairs}/>;
+
+        this.setState({
+            ingredients_list: simpleList,
+            pairs: pairs,
+            chosenCards: chosenPairs,
+            cardNodes: divCards,
+            ingredientPairsList: ingredientPairsList
+        });
+
+        this.timerID = setInterval(
+            () => this.tick(),
+            1000
         );
 
-        for( var i = this.state.pairs.length-1; i--;){
-            if ( this.state.pairs[i] === 'empty') this.state.pairs.splice(i, 1);
-        }
-        let randNum =0
-        for(let i = 0 ; i<12 ; i++){
-            randNum = Math.floor(Math.random() * Math.floor(this.state.pairs.length))
-            this.state.chosenCards.push(this.state.pairs[randNum])
-        }
-        console.log(this.state.pairs)
+        this.update = this.update.bind(this);
+        console.log("component did mount")
     }
 
 
-    onSelect = (chosenKey) => {
-        // this.setState({ selected: chosenKey });
-        console.log( chosenKey.target.classList)
-    };
 
-  render() {
 
-       const { selected } = this.state;
-      // Create menu from items
-      const menu = Menu(simpleList, selected);
+
+    async onSelect (chosenKey, state )  {
+            // const game ={...this.state.game}
+            console.log(chosenKey.target.classList);
+            if (this.state.game.pairing_card_pulled === false) {
+                // this.setState({ pairing_card_pulled: true });
+
+                const matchKey = chosenKey.target.classList[1];
+                const matchName = chosenKey.target.innerText;
+                this.setState(()=>({
+                    ...state,
+                    game:{
+                        pairing_card_pulled: true,
+                        pairing_card: matchKey,
+                        pairing_card_name: matchName
+                    }
+                }));
+                console.log("pairing card selected :"+ this.state.game.pairing_card);
+
+            }
+            else{
+
+                const matchKey = chosenKey.target.classList[1];
+                const matchName = chosenKey.target.innerText;
+
+                this.setState(()=>({
+                    ...state,
+                    game:{
+                        paired_card: matchKey,
+                        paired_card_name: matchName
+                    }
+                }));
+
+                console.log("paired card pulled :"+ this.state.game.paired_card);
+
+            }
+
+
+            if ((this.state.game.paired_card === this.state.game.pairing_card) && this.state.game.pairing_card_name !== this.state.game.paired_card_name){
+                console.log("PAIR!");
+                this.state.game.pairing_card_pulled=false;
+                this.state.game.correctMatches+=1;
+                // this.setState(checkMatch(true))
+            }
+            else{
+                this.state.game.wrongMatches+=1;
+                // this.setState(checkMatch(false))
+            }
+        };
+
+    async shouldComponentUpdate(nextProps, nextState, nextContext) {
+        if (this.state.game.pairing_card !== null && (this.state.game.pairing_card === nextState.game.paired_card)) {
+
+            console.log("should update & pair!");
+            console.log(this.state.game);
+
+            return true
+        }
+
+        return false
+    }
+
+
+    //
+   // async componentDidUpdate(nextProps, nextState, nextContext) {
+   //
+   //     if(nextState.game.paired_card === this.state.game.pairing_card ){
+   //         console.log(
+   //             "next State of pairing card " + nextState.game.pairing_card_name +
+   //             " \ncurrent State of pairing card "  +  this.state.game.pairing_card_name +
+   //
+   //             "\n\nnext State of paired card " + nextState.game.paired_card_name +
+   //             " \ncurrent State of paired card "  +  this.state.game.paired_card_name
+   //         );
+   //
+   //     }
+   // }
+
+    componentWillUnmount() {
+        clearInterval(this.timerID);
+    }
+
+    tick() {
+        this.setState({
+            timer: this.state.timer +1
+        });
+    }
+    render() {
+
+
 
     return (
       <div className="App">
           <header>
-              <PairingList
-                  data={menu}
-                  // onSelect={this.onSelect}
-                  // selected={this.state.selected}
-              />
+              {this.state.ingredientPairsList}
+
           </header>
         <main className="card_container">
-            <MatchCards chosenCards={this.state.chosenCards} onClick={this.onSelect} pairs={this.state.pairs}/>
+            {this.state.cardNodes}
         </main>
           <footer className='pairing_list'>
-              <p>matches</p>
-              <p>Score</p>
+              <p>Pairing name: {this.state.game.pairing_card_name} </p>
+              <p>Pairing key: {this.state.game.pairing_card} </p>
+              <p>Paired name: {this.state.game.paired_card_name} </p>
+              <p>Paired key: {this.state.game.paired_card} </p>
+              <p>correct matches: {this.state.game.correctMatches}</p>
+              <p>wrong matches: {this.state.game.wrongMatches}</p>
+              <p>Time: {this.state.timer}</p>
               <p>level</p>
           </footer>
       </div>

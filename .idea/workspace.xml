@@ -2,10 +2,10 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="6d405e14-671c-438e-839e-56b2c27692e9" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/src/components/MatchCards/MatchCards.css" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/workers/removeJunk.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/App.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/App.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/components/MatchCards.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/MatchCards/MatchCards.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/MatchCards/MatchCards.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/MatchCards/MatchCards.js" afterDir="false" />
     </list>
     <ignored path="$PROJECT_DIR$/.tmp/" />
     <ignored path="$PROJECT_DIR$/temp/" />
@@ -30,8 +30,11 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/data/veg_flavorbible.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="374">
-              <caret line="17" column="20" selection-start-line="17" selection-start-column="9" selection-end-line="17" selection-end-column="20" />
+            <state relative-caret-position="154">
+              <caret line="42602" selection-start-line="42602" selection-end-line="42602" selection-end-column="24" />
+              <folding>
+                <element signature="e#17#1558891#0" />
+              </folding>
             </state>
           </provider>
         </entry>
@@ -39,10 +42,36 @@
       <file pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/App.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="502">
-              <caret line="58" column="143" selection-start-line="58" selection-start-column="143" selection-end-line="58" selection-end-column="143" />
+            <state relative-caret-position="428">
+              <caret line="59" column="18" selection-start-line="59" selection-start-column="18" selection-end-line="59" selection-end-column="18" />
               <folding>
                 <element signature="e#0#41#0" expanded="true" />
+                <element signature="n#!!block;n#componentDidMount#0;n#App#0" />
+                <element signature="e#5380#5382#0" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/components/PairingList.js">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="264">
+              <caret line="12" column="32" selection-start-line="12" selection-start-column="28" selection-end-line="12" selection-end-column="32" />
+              <folding>
+                <element signature="e#0#26#0" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/workers/removeJunk.js">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="44">
+              <caret line="23" column="26" selection-start-line="23" selection-start-column="26" selection-end-line="23" selection-end-column="26" />
+              <folding>
+                <element signature="n#!!block;n#removeJunk#0;n#removeJunk#0;n#!!top" />
               </folding>
             </state>
           </provider>
@@ -51,21 +80,11 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/components/MatchCards/MatchCards.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="328">
-              <caret line="38" column="49" selection-start-line="38" selection-start-column="49" selection-end-line="38" selection-end-column="49" />
+            <state relative-caret-position="726">
+              <caret line="33" column="54" selection-start-line="33" selection-start-column="48" selection-end-line="33" selection-end-column="54" />
               <folding>
                 <element signature="e#0#26#0" expanded="true" />
-                <element signature="e#120#628#0" />
               </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/components/MatchCards/MatchCards.css">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="22">
-              <caret line="1" column="24" selection-start-line="1" selection-start-column="24" selection-end-line="1" selection-end-column="24" />
             </state>
           </provider>
         </entry>
@@ -73,8 +92,8 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/App.css">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="-10">
-              <caret line="27" lean-forward="true" selection-start-line="27" selection-end-line="27" />
+            <state relative-caret-position="594">
+              <caret line="27" selection-start-line="27" selection-end-line="27" />
             </state>
           </provider>
         </entry>
@@ -84,8 +103,8 @@
   <component name="FileTemplateManagerImpl">
     <option name="RECENT_TEMPLATES">
       <list>
-        <option value="JavaScript File" />
         <option value="CSS File" />
+        <option value="JavaScript File" />
       </list>
     </option>
   </component>
@@ -93,7 +112,13 @@
     <findStrings>
       <find>export</find>
       <find>rand</find>
+      <find>a_pair</find>
+      <find>paired_card_name</find>
+      <find>updat</find>
     </findStrings>
+    <replaceStrings>
+      <replace>thePair</replace>
+    </replaceStrings>
   </component>
   <component name="Git.Settings">
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
@@ -106,22 +131,25 @@
         <option value="$PROJECT_DIR$/src/components/PairingList.js" />
         <option value="$PROJECT_DIR$/src/components/Menu.js" />
         <option value="$PROJECT_DIR$/src/components/MatchCards.js" />
-        <option value="$PROJECT_DIR$/src/components/MatchCards/MatchCards.js" />
         <option value="$PROJECT_DIR$/src/components/MatchCards/MatchCards.css" />
+        <option value="$PROJECT_DIR$/src/workers/removeJunk.js" />
+        <option value="$PROJECT_DIR$/src/components/MatchCards/MatchCards.js" />
         <option value="$PROJECT_DIR$/src/App.js" />
       </list>
     </option>
   </component>
   <component name="ProjectFrameBounds" fullScreen="true">
-    <option name="x" value="1347" />
-    <option name="width" value="93" />
-    <option name="height" value="900" />
+    <option name="x" value="5040" />
+    <option name="y" value="-41" />
+    <option name="width" value="3200" />
+    <option name="height" value="1800" />
   </component>
   <component name="ProjectView">
     <navigator proportions="" version="1">
       <foldersAlwaysOnTop value="true" />
     </navigator>
     <panes>
+      <pane id="Scope" />
       <pane id="ProjectPane">
         <subPane>
           <expand>
@@ -144,20 +172,18 @@
               <item name="matchmaker" type="b2602c69:ProjectViewProjectNode" />
               <item name="matchmaker" type="462c0819:PsiDirectoryNode" />
               <item name="src" type="462c0819:PsiDirectoryNode" />
-              <item name="components" type="462c0819:PsiDirectoryNode" />
-              <item name="MatchCards" type="462c0819:PsiDirectoryNode" />
+              <item name="data" type="462c0819:PsiDirectoryNode" />
             </path>
             <path>
               <item name="matchmaker" type="b2602c69:ProjectViewProjectNode" />
               <item name="matchmaker" type="462c0819:PsiDirectoryNode" />
               <item name="src" type="462c0819:PsiDirectoryNode" />
-              <item name="data" type="462c0819:PsiDirectoryNode" />
+              <item name="workers" type="462c0819:PsiDirectoryNode" />
             </path>
           </expand>
           <select />
         </subPane>
       </pane>
-      <pane id="Scope" />
     </panes>
   </component>
   <component name="PropertiesComponent">
@@ -200,18 +226,19 @@
       <option name="presentableId" value="Default" />
       <updated>1551199684487</updated>
       <workItem from="1551199686039" duration="12583000" />
-      <workItem from="1551283364615" duration="4826000" />
+      <workItem from="1551283364615" duration="5333000" />
+      <workItem from="1551360555092" duration="21194000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="17409000" />
+    <option name="totallyTimeSpent" value="39110000" />
   </component>
   <component name="ToolWindowManager">
-    <frame x="0" y="0" width="1680" height="1050" extended-state="0" />
+    <frame x="5040" y="-41" width="3200" height="1800" extended-state="0" />
     <editor active="true" />
     <layout>
-      <window_info content_ui="combo" id="Project" order="0" visible="true" weight="0.09885473" />
+      <window_info content_ui="combo" id="Project" order="0" weight="0.10380623" />
       <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
       <window_info id="npm" order="2" side_tool="true" />
       <window_info id="Favorites" order="3" side_tool="true" />
@@ -225,27 +252,27 @@
       <window_info anchor="bottom" id="Docker" order="7" show_stripe_button="false" />
       <window_info anchor="bottom" id="Version Control" order="8" />
       <window_info anchor="bottom" id="Event Log" order="9" side_tool="true" />
-      <window_info active="true" anchor="bottom" id="Terminal" order="10" visible="true" weight="0.1431557" />
+      <window_info active="true" anchor="bottom" id="Terminal" order="10" visible="true" weight="0.017574692" />
       <window_info anchor="right" id="Commander" order="0" weight="0.4" />
       <window_info anchor="right" id="Ant Build" order="1" weight="0.25" />
       <window_info anchor="right" content_ui="combo" id="Hierarchy" order="2" weight="0.25" />
     </layout>
     <layout-to-restore>
-      <window_info id="npm" order="0" side_tool="true" />
-      <window_info id="Favorites" order="1" side_tool="true" />
-      <window_info active="true" content_ui="combo" id="Project" order="2" visible="true" weight="0.12108559" />
-      <window_info id="Structure" order="3" side_tool="true" weight="0.25" />
-      <window_info anchor="bottom" id="Docker" order="0" show_stripe_button="false" />
-      <window_info anchor="bottom" id="Terminal" order="1" visible="true" weight="0.21146356" />
-      <window_info anchor="bottom" id="Event Log" order="2" side_tool="true" />
-      <window_info anchor="bottom" id="Version Control" order="3" />
-      <window_info anchor="bottom" id="Message" order="4" />
-      <window_info anchor="bottom" id="Find" order="5" />
-      <window_info anchor="bottom" id="Run" order="6" />
-      <window_info anchor="bottom" id="Debug" order="7" weight="0.4" />
-      <window_info anchor="bottom" id="Cvs" order="8" weight="0.25" />
-      <window_info anchor="bottom" id="Inspection" order="9" weight="0.4" />
-      <window_info anchor="bottom" id="TODO" order="10" />
+      <window_info active="true" content_ui="combo" id="Project" order="0" visible="true" weight="0.10380623" />
+      <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
+      <window_info id="npm" order="2" side_tool="true" />
+      <window_info id="Favorites" order="3" side_tool="true" />
+      <window_info anchor="bottom" id="Message" order="0" />
+      <window_info anchor="bottom" id="Find" order="1" />
+      <window_info anchor="bottom" id="Run" order="2" />
+      <window_info anchor="bottom" id="Debug" order="3" weight="0.4" />
+      <window_info anchor="bottom" id="Cvs" order="4" weight="0.25" />
+      <window_info anchor="bottom" id="Inspection" order="5" weight="0.4" />
+      <window_info anchor="bottom" id="TODO" order="6" />
+      <window_info anchor="bottom" id="Docker" order="7" show_stripe_button="false" />
+      <window_info anchor="bottom" id="Version Control" order="8" />
+      <window_info anchor="bottom" id="Event Log" order="9" side_tool="true" />
+      <window_info anchor="bottom" id="Terminal" order="10" visible="true" weight="0.4212068" />
       <window_info anchor="right" id="Commander" order="0" weight="0.4" />
       <window_info anchor="right" id="Ant Build" order="1" weight="0.25" />
       <window_info anchor="right" content_ui="combo" id="Hierarchy" order="2" weight="0.25" />
@@ -255,34 +282,10 @@
     <option name="version" value="1" />
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/src/data/playData.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="154">
-          <caret line="7" column="20" selection-start-line="7" selection-start-column="20" selection-end-line="7" selection-end-column="20" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/data/veg_flavorbible.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="374">
-          <caret line="17" column="20" selection-start-line="17" selection-start-column="9" selection-end-line="17" selection-end-column="20" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/node_modules/react-horizontal-scrolling-menu/src/defautSettings.js">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="528">
           <caret line="24" column="8" selection-start-line="24" selection-start-column="2" selection-end-line="24" selection-end-column="8" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/components/PairingList.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="220">
-          <caret line="12" column="32" selection-start-line="12" selection-start-column="28" selection-end-line="12" selection-end-column="32" />
-          <folding>
-            <element signature="e#0#26#0" expanded="true" />
-          </folding>
         </state>
       </provider>
     </entry>
@@ -305,8 +308,45 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/App.css">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-10">
-          <caret line="27" lean-forward="true" selection-start-line="27" selection-end-line="27" />
+        <state relative-caret-position="594">
+          <caret line="27" selection-start-line="27" selection-end-line="27" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/data/playData.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="154">
+          <caret line="7" column="20" selection-start-line="7" selection-start-column="20" selection-end-line="7" selection-end-column="20" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/data/veg_flavorbible.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="154">
+          <caret line="42602" selection-start-line="42602" selection-end-line="42602" selection-end-column="24" />
+          <folding>
+            <element signature="e#17#1558891#0" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/workers/removeJunk.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="44">
+          <caret line="23" column="26" selection-start-line="23" selection-start-column="26" selection-end-line="23" selection-end-column="26" />
+          <folding>
+            <element signature="n#!!block;n#removeJunk#0;n#removeJunk#0;n#!!top" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/components/PairingList.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="264">
+          <caret line="12" column="32" selection-start-line="12" selection-start-column="28" selection-end-line="12" selection-end-column="32" />
+          <folding>
+            <element signature="e#0#26#0" expanded="true" />
+          </folding>
         </state>
       </provider>
     </entry>
@@ -319,21 +359,22 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/components/MatchCards/MatchCards.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="328">
-          <caret line="38" column="49" selection-start-line="38" selection-start-column="49" selection-end-line="38" selection-end-column="49" />
+        <state relative-caret-position="726">
+          <caret line="33" column="54" selection-start-line="33" selection-start-column="48" selection-end-line="33" selection-end-column="54" />
           <folding>
             <element signature="e#0#26#0" expanded="true" />
-            <element signature="e#120#628#0" />
           </folding>
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/App.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="502">
-          <caret line="58" column="143" selection-start-line="58" selection-start-column="143" selection-end-line="58" selection-end-column="143" />
+        <state relative-caret-position="428">
+          <caret line="59" column="18" selection-start-line="59" selection-start-column="18" selection-end-line="59" selection-end-column="18" />
           <folding>
             <element signature="e#0#41#0" expanded="true" />
+            <element signature="n#!!block;n#componentDidMount#0;n#App#0" />
+            <element signature="e#5380#5382#0" />
           </folding>
         </state>
       </provider>
