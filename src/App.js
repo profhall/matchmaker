@@ -15,25 +15,38 @@ const FlavorsList = Object.values(Flavors);
 
 console.log(FlavorsList);
 
+const removeJunk = (string) => {
+    let fname = string
+    console.log(fname)
+
+    if (fname.includes('(')) {
+        fname = fname.slice(0, fname.indexOf("(") - 1)
+    }
+
+    if (fname.includes('and/or')) {
+        fname = fname.slice(0, fname.indexOf("and/or") - 1)
+    }
+
+    if (fname.includes('or')) {
+        fname = fname.slice(0, fname.indexOf("or") - 1)
+    }
+
+    if (fname.includes(',') && fname.split(",").length === 2 ) {
+        console.log(fname.split(","))
+
+        fname = fname.split(",")[1] + " " +fname.split(",")[0]
+        console.log(fname)
+    }
+    return(fname)
+};
+
 const simpleList = FlavorsList.map((flavor,i) => {
     const letter = flavor;
-    var fname = flavor.name;
-    // console.log(letr)
-    if (flavor.name.includes('(')) {
-        fname = fname.slice(0, flavor.name.indexOf("(") - 1)
-    }
-    if (flavor.name.includes('and/or')) {
-        fname = fname.slice(0, flavor.name.indexOf("and/or") - 1)
-    }
-
-    if (flavor.name.includes('or')) {
-        fname = fname.slice(0, flavor.name.indexOf("or") - 1)
-    }
-
-    return(fname)
-
+    var name = removeJunk(flavor.name);
+    return(name)
 });
-// console.log(simpleList)
+
+
 
 class App extends Component {
     constructor(props) {
@@ -45,8 +58,12 @@ class App extends Component {
         this.state = {
             selected: '',
             ingredients_list: simpleList,
-            pairs: []
+            pairs: [],
+            chosenCards: [],
+            pairing_card: null,
+            paired_card: null
         };
+
 
         this.state.pairs = FlavorsList.map( (flav)=> {
             // console.log(flav.Ingredients != null)
@@ -55,7 +72,7 @@ class App extends Component {
                     let randNum = Math.floor(Math.random() * Math.floor(flav.Ingredients.length-1));
                     flavor_pair =
                         {
-                            'flavor': flav.name,
+                            'flavor': removeJunk(flav.name),
                             'a_pair': already_used_pairing_ing.includes(flav.Ingredients[randNum]) ? flav.Ingredients[randNum+1] : flav.Ingredients[randNum]
 
 
@@ -76,15 +93,18 @@ class App extends Component {
         for( var i = this.state.pairs.length-1; i--;){
             if ( this.state.pairs[i] === 'empty') this.state.pairs.splice(i, 1);
         }
-
+        let randNum =0
+        for(let i = 0 ; i<12 ; i++){
+            randNum = Math.floor(Math.random() * Math.floor(this.state.pairs.length))
+            this.state.chosenCards.push(this.state.pairs[randNum])
+        }
         console.log(this.state.pairs)
     }
 
 
     onSelect = (chosenKey) => {
-        this.setState({ selected: chosenKey });
-        console.log("state is set " + chosenKey)
-        console.log( simpleList[chosenKey])
+        // this.setState({ selected: chosenKey });
+        console.log( chosenKey.target.classList)
     };
 
   render() {
@@ -103,7 +123,7 @@ class App extends Component {
               />
           </header>
         <main className="card_container">
-            <MatchCards pairs={this.state.pairs}/>
+            <MatchCards chosenCards={this.state.chosenCards} onClick={this.onSelect} pairs={this.state.pairs}/>
         </main>
           <footer className='pairing_list'>
               <p>matches</p>

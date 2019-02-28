@@ -2,8 +2,7 @@ import React from 'react';
 import './MatchCards.css';
 
 
-let randNum = 0
-let randNumList =[]
+
 // props.numberOfCards
 var shuffle = function (array) {
 
@@ -27,21 +26,16 @@ var shuffle = function (array) {
 };
 
 const MatchCard = (props) =>  {
-    let chosenCards = []
-    for(let i = 0 ; i<12 ; i++){
-        randNum = Math.floor(Math.random() * Math.floor(props.pairs.length))
-        randNumList.push(randNum)
-        chosenCards.push(props.pairs[randNum])
-    }
+    let chosenCards=props.chosenCards
 
     console.log(chosenCards)
     const cards = chosenCards.map((card,i) =>
-        <div onClick={()=>console.log(card.flavor)} key={i+100} className={'card c'+i} title={i}>
+        <div onClick={props.onClick} key={i+100} className={'card c'+i}>
             <span className={'cardText'} >{card.flavor}</span>
         </div>
     )
     cards.push( chosenCards.map((card,i) =>
-        <div onClick={()=>console.log(card.a_pair)} key={i+200}  className={'card c' +i} title={i}>
+        <div onClick={props.onClick} key={i+200}  className={'card c' +i} >
             <span className={'cardText'} >{card.a_pair}</span>
         </div>)
     )
@@ -56,7 +50,7 @@ const MatchCards = (props) =>  {
 
     // pair.a_pair != null ? console.log(pair) : console.log("skip")
     return(
-        <MatchCard  title={""} pairs={props.pairs} />
+        <MatchCard chosenCards={props.chosenCards} onClick={props.onClick} title={""} pairs={props.pairs} />
         )
 
 
