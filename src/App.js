@@ -5,10 +5,10 @@ import ReactDOM from "react-dom";
 import PropTypes from "prop-types";
 import PairingList from "./components/PairingList";
 import Menu from "./components/Menu";
-import list from "./data/playData";
 import Flavors from "./data/veg_flavorbible";
 import MatchCards from "./components/MatchCards/MatchCards";
-import removeJunk from "./workers/removeJunk";
+import removeJunk, {removeEmpties } from "./workers/removeJunk";
+import {getPairsforLevel, getPairsforSession}  from "./workers/getters ";
 
 // list of items
 
@@ -37,19 +37,14 @@ class App extends Component {
                     correctMatches: 0,
                     wrongMatches:0
                 }
-
         };
         console.log("state set")
     }
 
 
-
     async componentDidMount() {
         // const res = await axios.get('/artists.json');
         const FlavorsList = Object.values(Flavors);
-        const chosenPairs = [];
-        const already_used_pairing_ing =[];
-        let randNum =0;
         const simpleList = FlavorsList.map((flavor,i) => {
             const letter = flavor;
             var name = removeJunk(flavor.name);
@@ -62,37 +57,8 @@ class App extends Component {
         const menu = Menu(simpleList);
         const ingredientPairsList = <PairingList data={menu}/>
 
-        const pairs = FlavorsList.map( (flav)=> {
-            // console.log(flav.Ingredients != null)
-            let flavor_pair ={}
-            if (flav.Ingredients != null){
-                let randNum = Math.floor(Math.random() * Math.floor(flav.Ingredients.length-1));
-                flavor_pair =
-                    {
-                        'pairer': removeJunk(flav.name),
-                        'thePair': already_used_pairing_ing.includes(flav.Ingredients[randNum]) ? flav.Ingredients[randNum+1].toUpperCase() : flav.Ingredients[randNum].toUpperCase()
-                    };
-
-                already_used_pairing_ing.push(flavor_pair.thePair);
-                return (
-                    flavor_pair
-                )
-            }
-            else{
-                return "empty"
-            }
-        });
-
-        //remove all the empty values
-        for( var i = pairs.length-1; i--;){
-            // console.log(this.state.pairs[i])
-            if( pairs[i] === 'empty') pairs.splice(i, 1);//removes the element from the array
-        }
-
-        for(let i = 0 ; i<12 ; i++){
-            randNum = Math.floor(Math.random() * Math.floor(pairs.length))
-            chosenPairs.push(pairs[randNum])
-        }
+        const pairs = getPairsforSession(FlavorsList);
+        const chosenPairs = getPairsforLevel(12,removeEmpties(pairs));
         const divCards = <MatchCards chosenCards={chosenPairs} onClick={this.onClick} pairs={pairs}/>;
 
         this.setState({
@@ -103,12 +69,13 @@ class App extends Component {
             ingredientPairsList: ingredientPairsList
         });
 
+
+
         this.timerID = setInterval(
             () => this.tick(),
             1000
         );
 
-        this.update = this.update.bind(this);
         console.log("component did mount")
     }
 

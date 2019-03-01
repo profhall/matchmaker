@@ -22,3 +22,16 @@ const removeJunk = (string) => {
 };
 
 export default removeJunk;
+
+
+export const removeEmpties = (pairs) =>{
+
+    //remove all the empty values
+    for( var i = pairs.length-1; i--;){
+        // console.log(this.state.pairs[i])
+        if( pairs[i] === 'empty') pairs.splice(i, 1);//removes the element from the array
+    }
+    return pairs
+
+};
+
