@@ -1,62 +1,77 @@
-.cardText{
-    visibility: visible;
+.card > .cardText{
+    display: none;
+}
+
+.card{
+    border: 5px solid;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 20px;
+    font-weight: 700;
+    color: white;
+    background-color: black;
+}
+
+.card.picked > .cardText{
+    display: block;
 }
 
 .c0{
-    background-color: springgreen;
+    border-color: springgreen;
 
 }
 
 .c1{
-    background-color: green;
+    border-color: chartreuse;
 
 }
 
 .c2{
-    background-color: navajowhite;
+    border-color: navajowhite;
 
 }
 
 .c3{
-    background-color: deeppink;
+    border-color: deeppink;
 
 }
 
 .c4{
-    background-color: indigo;
+    border-color: indigo;
 
 }
 
 .c5{
-    background-color: orangered;
+    border-color: orangered;
 
 }
 
 .c6{
-    background-color: lightseagreen;
+    border-color: lightseagreen;
 }
 
 .c7{
-    background-color: red;
+    border-color: red;
 
 }
 
 .c8{
-    background-color: orange;
+    border-color: orange;
 
 }
 
 .c9{
-    background-color: greenyellow;
+    border-color: lightpink;
 
 }
 
 .c10{
-    background-color: silver;
+    border-color: silver;
 
 }
 
 .c11{
-    background-color: yellow;
+    border-color: yellow;
 
 }

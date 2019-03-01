@@ -1,5 +1,5 @@
-const removeJunk = (string) => {
-    let fname = string
+export const removeJunk = (string) => {
+    let fname = string;
     if (fname.includes('(')) {
         fname = fname.slice(0, fname.indexOf("(") - 1)
     }
@@ -13,16 +13,12 @@ const removeJunk = (string) => {
     }
 
     if (fname.includes(',') && fname.split(",").length === 2 ) {
-        // console.log(fname.split(","))
-
         fname = fname.split(",")[1] + " " +fname.split(",")[0]
-        // console.log(fname)
     }
-    return(fname)
+
+
+    return fname
 };
-
-export default removeJunk;
-
 
 export const removeEmpties = (pairs) =>{
 
