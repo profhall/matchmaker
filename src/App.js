@@ -104,23 +104,18 @@ class App extends Component {
 
                 card.classList.add('picked');
 
-                this.setState(({
-                    ...this.state, game: {
-                        ...this.state.game,
-                        pairing_card_pulled: true,
-                        pairing_card_name: card.innerText,
-                        pairing_card: card.classList[1],
-                    }
-
-                }), () => {
-                    console.log("Pairing card just flipped: " + this.state.game.pairing_card_name)
-                });
+                this.setState(
+                        ({...this.state, game: {...this.state.game, pairing_card_pulled: true, pairing_card_name: card.innerText, pairing_card: card.classList[1]}}),
+                        () => {console.log("Pairing card just flipped: " + this.state.game.pairing_card_name)}
+                    );
             }
             //handles if we already have a card to compare to :: The MAIN CARD
             else if (game.pairing_card_pulled === true) {
 
+                if(!Array.from(card.classList).includes('picked')){
+                    card.classList.add('picked');
 
-                card.classList.add('picked');
+                }
 
                 this.setState(({
                     ...this.state, game: {

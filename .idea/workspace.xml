@@ -3,12 +3,7 @@
   <component name="ChangeListManager">
     <list default="true" id="6d405e14-671c-438e-839e-56b2c27692e9" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/package-lock.json" beforeDir="false" afterPath="$PROJECT_DIR$/package-lock.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/App.css" beforeDir="false" afterPath="$PROJECT_DIR$/src/App.css" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/App.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/App.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/components/MatchCards/MatchCards.css" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/MatchCards/MatchCards.css" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/workers/getters.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/workers/getters.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/workers/removeJunk.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/workers/removeJunk.js" afterDir="false" />
     </list>
     <ignored path="$PROJECT_DIR$/.tmp/" />
     <ignored path="$PROJECT_DIR$/temp/" />
@@ -47,11 +42,10 @@
           <file pinned="false" current-in-tab="true">
             <entry file="file://$PROJECT_DIR$/src/App.js">
               <provider selected="true" editor-type-id="text-editor">
-                <state relative-caret-position="970">
-                  <caret line="188" column="45" selection-start-line="188" selection-start-column="45" selection-end-line="188" selection-end-column="45" />
+                <state relative-caret-position="156">
+                  <caret line="116" column="17" selection-start-line="116" selection-start-column="17" selection-end-line="116" selection-end-column="17" />
                   <folding>
                     <element signature="e#0#41#0" expanded="true" />
-                    <element signature="e#4236#5400#0" />
                     <element signature="e#5499#6106#0" />
                     <element signature="e#6139#6252#0" />
                     <element signature="e#6558#6701#0" />
@@ -269,12 +263,12 @@
       <workItem from="1551199686039" duration="12583000" />
       <workItem from="1551283364615" duration="5333000" />
       <workItem from="1551360555092" duration="33344000" />
-      <workItem from="1551461692933" duration="8723000" />
+      <workItem from="1551461692933" duration="9603000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="59983000" />
+    <option name="totallyTimeSpent" value="60863000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="5040" y="-41" width="3200" height="1800" extended-state="0" />
@@ -294,7 +288,7 @@
       <window_info anchor="bottom" id="Docker" order="7" show_stripe_button="false" />
       <window_info anchor="bottom" id="Version Control" order="8" />
       <window_info anchor="bottom" id="Event Log" order="9" sideWeight="0.5001573" side_tool="true" weight="0.21031049" />
-      <window_info active="true" anchor="bottom" id="Terminal" order="10" sideWeight="0.4998427" visible="true" weight="0.02636204" />
+      <window_info active="true" anchor="bottom" id="Terminal" order="10" sideWeight="0.4998427" visible="true" weight="0.23432924" />
       <window_info anchor="right" id="Commander" order="0" weight="0.4" />
       <window_info anchor="right" id="Ant Build" order="1" weight="0.25" />
       <window_info anchor="right" content_ui="combo" id="Hierarchy" order="2" weight="0.25" />
@@ -415,11 +409,10 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/App.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="970">
-          <caret line="188" column="45" selection-start-line="188" selection-start-column="45" selection-end-line="188" selection-end-column="45" />
+        <state relative-caret-position="156">
+          <caret line="116" column="17" selection-start-line="116" selection-start-column="17" selection-end-line="116" selection-end-column="17" />
           <folding>
             <element signature="e#0#41#0" expanded="true" />
-            <element signature="e#4236#5400#0" />
             <element signature="e#5499#6106#0" />
             <element signature="e#6139#6252#0" />
             <element signature="e#6558#6701#0" />
