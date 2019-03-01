@@ -16,8 +16,9 @@ class App extends Component {
     constructor(props) {
         super(props);
         //this line makes sure that 'this.Onclick' is always gonna be bound and trigger 'onClick' method
-        this.onSelect = this.onSelect.bind(this);
+        this.onClick = this.onClick.bind(this);
 
+        console.log("state about to set")
         this.state = {
             selected: '',
             ingredients_list: [],
@@ -28,17 +29,17 @@ class App extends Component {
             menu:null,
             game:
                 {
-                    pairing_card: null,
-                    paired_card: null,
+                    pairing_card: "",
+                    pairing_card_name:"",
+                    paired_card: "",
                     pairing_card_pulled: false,
-                    pairing_card_name:null,
-                    paired_card_name:null,
+                    paired_card_name:"",
                     correctMatches: 0,
                     wrongMatches:0
                 }
 
         };
-        // console.log(this.state.pairs)
+        console.log("state set")
     }
 
 
@@ -69,7 +70,7 @@ class App extends Component {
                 flavor_pair =
                     {
                         'pairer': removeJunk(flav.name),
-                        'thePair': already_used_pairing_ing.includes(flav.Ingredients[randNum]) ? flav.Ingredients[randNum+1] : flav.Ingredients[randNum]
+                        'thePair': already_used_pairing_ing.includes(flav.Ingredients[randNum]) ? flav.Ingredients[randNum+1].toUpperCase() : flav.Ingredients[randNum].toUpperCase()
                     };
 
                 already_used_pairing_ing.push(flavor_pair.thePair);
@@ -92,7 +93,7 @@ class App extends Component {
             randNum = Math.floor(Math.random() * Math.floor(pairs.length))
             chosenPairs.push(pairs[randNum])
         }
-        const divCards = <MatchCards chosenCards={chosenPairs} onClick={this.onSelect} pairs={pairs}/>;
+        const divCards = <MatchCards chosenCards={chosenPairs} onClick={this.onClick} pairs={pairs}/>;
 
         this.setState({
             ingredients_list: simpleList,
@@ -115,72 +116,106 @@ class App extends Component {
 
 
 
-    async onSelect (chosenKey, state )  {
+        onClick =  (chosenKey, state ) => {
+            chosenKey.preventDefault()
             // const game ={...this.state.game}
             console.log(chosenKey.target.classList);
-            if (this.state.game.pairing_card_pulled === false) {
-                // this.setState({ pairing_card_pulled: true });
-
-                const matchKey = chosenKey.target.classList[1];
-                const matchName = chosenKey.target.innerText;
-                this.setState(()=>({
-                    ...state,
-                    game:{
+            const card = chosenKey.target;
+            let game=this.state.game;
+            //handles if the MAIN CARD to compare hasn't been set
+            if (game.pairing_card_pulled === false)  {
+                this.setState(({
+                    ...this.state, game: {
+                        ...this.state.game,
                         pairing_card_pulled: true,
-                        pairing_card: matchKey,
-                        pairing_card_name: matchName
+                        pairing_card_name: card.innerText,
+                        pairing_card: card.classList[1],
                     }
-                }));
-                console.log("pairing card selected :"+ this.state.game.pairing_card);
 
+                }), () => {
+                    console.log("Pairing card just flipped: " + this.state.game.pairing_card_name)
+                })
             }
-            else{
 
-                const matchKey = chosenKey.target.classList[1];
-                const matchName = chosenKey.target.innerText;
+            //handles if we already have a card to compare to :: The MAIN CARD
+            else if (game.pairing_card_pulled === true) {
 
-                this.setState(()=>({
-                    ...state,
-                    game:{
-                        paired_card: matchKey,
-                        paired_card_name: matchName
+                this.setState(({
+                    ...this.state, game: {
+                        ...this.state.game,
+                        paired_card_name: card.innerText,
+                        paired_card: card.classList[1],
                     }
-                }));
 
-                console.log("paired card pulled :"+ this.state.game.paired_card);
+                }), () =>
+                    {
+                        console.log("Paired card just flipped: " + this.state.game.paired_card_name);
+                        if((this.state.game.paired_card_name !==  this.state.game.pairing_card_name)  ){
 
+                            if(this.state.game.pairing_card === this.state.game.paired_card) {
+                                console.log("Match case >> " + this.state.game.pairing_card+ "::" +this.state.game.paired_card)
+                                // console.log(this.state.game.pairing_card+" is not " +  this.state.game.paired_card)
+
+                                game=this.state.game;
+
+                                this.setState((prevState)=>({
+                                    ...this.state, game: {
+                                        ...this.state.game,
+                                        correctMatches: Number(prevState.game.correctMatches) + 1,
+                                        pairing_card_pulled: false,
+                                        pairing_card: "",
+                                        pairing_card_name:"",
+                                        paired_card: "",
+                                        paired_card_name:""
+                                    }
+
+                                }), () => {
+
+                                    console.log("Great! " + game.pairing_card_name + " pairs with " +  game.paired_card_name)
+                                })
+                            }
+                            else if(this.state.game.pairing_card !== this.state.game.paired_card) {
+                                console.log("wrong pick ")
+
+                                this.setState((prevState)=>({
+                                    ...this.state, game: {
+                                        ...this.state.game,
+                                        wrongMatches: Number(prevState.game.wrongMatches) + 1,
+                                    }
+
+                                }), () => {
+                                    console.log(game.pairing_card_name + " does not pair with " +  game.paired_card_name)
+                                })
+                            }
+                            else{
+                                console.log("This else should never get reached")
+                            }
+                        }
+                        else{
+                            console.log("You picked the same main card, this should do nothing");
+
+                        }
+
+
+                    }
+                )
             }
 
 
-            if ((this.state.game.paired_card === this.state.game.pairing_card) && this.state.game.pairing_card_name !== this.state.game.paired_card_name){
-                console.log("PAIR!");
-                this.state.game.pairing_card_pulled=false;
-                this.state.game.correctMatches+=1;
-                // this.setState(checkMatch(true))
-            }
-            else{
-                this.state.game.wrongMatches+=1;
-                // this.setState(checkMatch(false))
-            }
+
+
+
         };
 
 
 
 
-    //
-   // async componentDidUpdate(nextProps, nextState, nextContext) {
-   //
-   //     if(nextState.game.paired_card === this.state.game.pairing_card ){
-   //         console.log(
-   //             "next State of pairing card " + nextState.game.pairing_card_name +
-   //             " \ncurrent State of pairing card "  +  this.state.game.pairing_card_name +
-   //
-   //             "\n\nnext State of paired card " + nextState.game.paired_card_name +
-   //             " \ncurrent State of paired card "  +  this.state.game.paired_card_name
-   //         );
-   //
-   //     }
-   // }
+    async  componentDidUpdate(nextProps, nextState, nextContext) {
+
+       if((this.state.game.pairing_card_name !== nextState.game.paired_card_name) && this.state.game.pairing_card !== "" && (nextState.game.paired_card === this.state.game.pairing_card) ){
+
+       }
+   }
 
     componentWillUnmount() {
         clearInterval(this.timerID);
@@ -193,8 +228,6 @@ class App extends Component {
     }
     render() {
 
-
-
     return (
       <div className="App">
           <header>
@@ -206,13 +239,10 @@ class App extends Component {
         </main>
           <footer className='pairing_list'>
               <p>Pairing name: {this.state.game.pairing_card_name} </p>
-              <p>Pairing key: {this.state.game.pairing_card} </p>
               <p>Paired name: {this.state.game.paired_card_name} </p>
-              <p>Paired key: {this.state.game.paired_card} </p>
               <p>correct matches: {this.state.game.correctMatches}</p>
               <p>wrong matches: {this.state.game.wrongMatches}</p>
               <p>Time: {this.state.timer}</p>
-              <p>level</p>
           </footer>
       </div>
     );

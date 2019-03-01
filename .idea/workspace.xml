@@ -39,12 +39,13 @@
       <file pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/App.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="561">
-              <caret line="166" column="3" selection-start-line="166" selection-start-column="3" selection-end-line="166" selection-end-column="3" />
+            <state relative-caret-position="370">
+              <caret line="72" column="181" selection-start-line="72" selection-start-column="181" selection-end-line="72" selection-end-column="181" />
               <folding>
                 <element signature="e#0#41#0" expanded="true" />
-                <element signature="n#!!block;n#componentDidMount#0;n#App#0" />
-                <element signature="e#5380#5382#0" />
+                <element signature="e#4093#4564#0" />
+                <element signature="e#4652#4884#0" />
+                <element signature="e#5109#5808#0" />
               </folding>
             </state>
           </provider>
@@ -224,12 +225,12 @@
       <updated>1551199684487</updated>
       <workItem from="1551199686039" duration="12583000" />
       <workItem from="1551283364615" duration="5333000" />
-      <workItem from="1551360555092" duration="21782000" />
+      <workItem from="1551360555092" duration="29314000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="39698000" />
+    <option name="totallyTimeSpent" value="47230000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="5040" y="-41" width="3200" height="1800" extended-state="0" />
@@ -366,12 +367,13 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/App.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="561">
-          <caret line="166" column="3" selection-start-line="166" selection-start-column="3" selection-end-line="166" selection-end-column="3" />
+        <state relative-caret-position="370">
+          <caret line="72" column="181" selection-start-line="72" selection-start-column="181" selection-end-line="72" selection-end-column="181" />
           <folding>
             <element signature="e#0#41#0" expanded="true" />
-            <element signature="n#!!block;n#componentDidMount#0;n#App#0" />
-            <element signature="e#5380#5382#0" />
+            <element signature="e#4093#4564#0" />
+            <element signature="e#4652#4884#0" />
+            <element signature="e#5109#5808#0" />
           </folding>
         </state>
       </provider>
